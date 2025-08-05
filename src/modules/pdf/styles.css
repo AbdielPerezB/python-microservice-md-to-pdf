@@ -1,0 +1,31 @@
+body {
+    font-family: Arial, serif;
+    line-height: 1.6;
+    margin-left: 145px;
+    margin-right: 145px;    
+}
+
+img body {
+    margin-left: 0px;
+}
+
+h1 {
+    color: #333;
+}
+
+h2.tittle {
+    color: #d1440c;
+}
+
+ol {
+    list-style-type: none; /*Elimina los marcadores de lista */
+}
+
+ul li {
+    list-style-type: disc;
+}
+
+li::before {
+    /* content: "- "; Agrega un guión como marcador */
+    margin-right: 5px;
+}
