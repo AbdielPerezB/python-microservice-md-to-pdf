@@ -1,12 +1,11 @@
-import os.path
-from pyexpat.errors import messages
+import os.path, os
 
 from fastapi import FastAPI, HTTPException, Response
 from fastapi.responses import FileResponse
 from pydantic import BaseModel
-from typing_extensions import Literal, Annotated, List
+from config import STAGE, WKHTMLTOPDF_PATH
+from src.service import AppService
 
-from service import AppService
 
 
 #Dto para la función de recibir texto en md y guardarlo en pdf
@@ -25,8 +24,11 @@ app = FastAPI(
 )
 
 @app.get("/status", name="Status API", summary='Retorna ok si el API esta en funcionamiento')
-def read_root()->Literal["ok"]:
-    return "ok"
+def read_root():
+    return {
+        "STAGE": STAGE,
+        "WKHTMLTOPDF_PATH": WKHTMLTOPDF_PATH
+    }
 
 @app.post(
     path="/generate-pdf",
