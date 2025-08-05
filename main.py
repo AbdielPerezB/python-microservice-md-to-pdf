@@ -3,7 +3,7 @@ import os.path, os
 from fastapi import FastAPI, HTTPException, Response
 from fastapi.responses import FileResponse
 from pydantic import BaseModel
-from config import STAGE, WKHTMLTOPDF_PATH
+from config import WKHTMLTOPDF_PATH
 from src.service import AppService
 
 
@@ -12,7 +12,7 @@ from src.service import AppService
 class PdfRequest(BaseModel):
     textInMd: str
     title: str
-
+    
 #Instancia del service
 appService = AppService()
 

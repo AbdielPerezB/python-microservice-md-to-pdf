@@ -1,5 +1,5 @@
 # Usa la imagen oficial de Python con la misma versión que usas localmente
-FROM python:3.12.11-slim-bullseye
+FROM python:3.12.11-slim-bookworm
 
 # Instala las dependencias del sistema (incluyendo wkhtmltopdf)
 RUN apt-get update && \
@@ -7,6 +7,7 @@ RUN apt-get update && \
     wkhtmltopdf \
     xvfb \
     fonts-liberation \
+    fonts-dejavu \
     libssl-dev \
     libxrender-dev \
     libx11-dev \
