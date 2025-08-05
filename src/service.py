@@ -10,13 +10,13 @@ class AppService:
     def __init__(self):
         self.pdfClass = SavePdfWkhtmltopdf()
 
-    def generate_pdf(self, textInMd: str, title: str) -> str:
+    def generate_pdf(self, textInMd: str, title: str, encabezado: str) -> str:
         """
         Devuelve el path del pdf generado con el texto en formato md
         """
 
         #Guardamos el contenido
-        self.pdfClass.add_title(title, 'Respuesta de Dacuai:')
+        self.pdfClass.add_title(title, encabezado)
         self.pdfClass.add_content(textInMd)
 
         ##creamos la carpet temporal

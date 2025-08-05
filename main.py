@@ -12,6 +12,7 @@ from src.service import AppService
 class PdfRequest(BaseModel):
     textInMd: str
     title: str
+    encabezado: str
     
 #Instancia del service
 appService = AppService()
@@ -26,8 +27,7 @@ app = FastAPI(
 @app.get("/status", name="Status API", summary='Retorna ok si el API esta en funcionamiento')
 def read_root():
     return {
-        "STAGE": STAGE,
-        "WKHTMLTOPDF_PATH": WKHTMLTOPDF_PATH
+        "status": "pk",
     }
 
 @app.post(
@@ -39,7 +39,7 @@ def read_root():
 async def mdToPdf(request: PdfRequest):
 
     ##obtenemos el pdf
-    pathPdf = appService.generate_pdf(request.textInMd, request.title)
+    pathPdf = appService.generate_pdf(request.textInMd, request.title, request.encabezado)
 
     #Verificamos que si exista el pdf
     if not os.path.exists(pathPdf):
