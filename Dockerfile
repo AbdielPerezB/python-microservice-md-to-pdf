@@ -1,5 +1,5 @@
 # Usa la imagen oficial de Python con la misma versión que usas localmente
-FROM python:3.9-slim
+FROM python:3.12.11-slim-bullseye
 
 # Instala las dependencias del sistema (incluyendo wkhtmltopdf)
 RUN apt-get update && \
@@ -37,4 +37,4 @@ COPY . .
 EXPOSE 8000
 
 # Comando para ejecutar la aplicación
-CMD ["fastapi", "run", "src/main.py"]
+CMD ["fastapi", "run", "main.py"]

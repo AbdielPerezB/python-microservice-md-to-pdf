@@ -2,7 +2,7 @@ import markdown
 import pdfkit
 import asyncio
 from pathlib import Path
-from config import STAGE, WKHTMLTOPDF_PATH
+from config import WKHTMLTOPDF_PATH
 #ajustes default
 AJUSTES_PDF_DEFAULT = {
         "page-size": "letter",
@@ -16,10 +16,7 @@ AJUSTES_PDF_DEFAULT = {
 class SavePdfWkhtmltopdf:
 
     def __init__(self, css: str = None, ajustes_pagina_pdf = None):
-        self.config = pdfkit.configuration(
-            wkhtmltopdf='/usr/bin/wkhtmltopdf.sh' if STAGE == 'prod' #Usa el wrapper en prod
-            else '/usr/bin/wkhtmltopdf',
-        )#Usa el wrapper
+        self.config = pdfkit.configuration(wkhtmltopdf=WKHTMLTOPDF_PATH)
         self.ajustes_pagina_pdf = AJUSTES_PDF_DEFAULT if not ajustes_pagina_pdf else ajustes_pagina_pdf
         self.story = ""
         self.css = css if css else str(Path(__file__).parent / "styles.css")

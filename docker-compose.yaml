@@ -1,0 +1,10 @@
+services:
+  fastapi-pdf-generator:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "${PORT}:8000"
+    environment:
+      - WKHTMLTOPDF_PATH=${WKHTMLTOPDF_PATH}
+    restart: unless-stopped
