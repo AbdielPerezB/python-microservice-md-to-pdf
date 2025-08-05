@@ -2,7 +2,7 @@
 1. Instalar wkhtmltopdf    
    - `apt-get install wkhtmltopdf`
 2. Crear un entorno cirtual: 
-   - `python -m venv .venv`
+   - `python3 -m venv .venv`
    - Acceder al entorno virtual: `source .venv/bin/activate`
 3. Instalar las dependencias dentro del entorno virtual:
    - `pip install -r requirements.txt`
