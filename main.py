@@ -12,7 +12,7 @@ from src.service import AppService
 class PdfRequest(BaseModel):
     textInMd: str
     title: str
-    encabezado: str
+    header: str
     
 #Instancia del service
 appService = AppService()
@@ -39,7 +39,7 @@ def read_root():
 async def mdToPdf(request: PdfRequest):
 
     ##obtenemos el pdf
-    pathPdf = appService.generate_pdf(request.textInMd, request.title, request.encabezado)
+    pathPdf = appService.generate_pdf(request.textInMd, request.title, request.header)
 
     #Verificamos que si exista el pdf
     if not os.path.exists(pathPdf):
