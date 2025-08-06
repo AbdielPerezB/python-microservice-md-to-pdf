@@ -3,6 +3,8 @@ import os.path, os
 from fastapi import FastAPI, HTTPException, Response
 from fastapi.responses import FileResponse
 from pydantic import BaseModel
+from fastapi.middleware.cors import CORSMiddleware
+
 from src.service import AppService
 
 
@@ -20,6 +22,23 @@ appService = AppService()
 app = FastAPI(
     title="Microservice md a pdf",
     summary= "Microservice that gets a text in markdown format and returns it in a pdf",
+)
+
+#CORS
+origins = [
+    "*" #Permitimos todos
+    # "http://localhost.tiangolo.com",
+    # "https://localhost.tiangolo.com",
+    # "http://localhost",
+    # "http://localhost:8080",
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 @app.get("/status", name="Status API", summary='Returns ok if app is ok')
