@@ -1,20 +1,23 @@
-## Instrucciones de instalación No Docker
-1. Instalar wkhtmltopdf    
+## About it
+This microservice obtains a text in markdown format, saves it in a pdf and returns the file
+
+## No Docker Installation Instructions
+1. Install wkhtmltopdf    
    - `apt-get install wkhtmltopdf`
-2. Crear un entorno cirtual: 
+2. Create a virtual environment: 
    - `python3 -m venv .venv`
-   - Acceder al entorno virtual: `source .venv/bin/activate`
-3. Instalar las dependencias dentro del entorno virtual:
+   - Access to the virtual environment: `source .venv/bin/activate`
+3. Install all dependencies whithin the virtual environment:
    - `pip install -r requirements.txt`
-4. INiciar FastAPI.
-   - Para producción: `fastapi run main.py`
-   - Para desarrollo. `fastapi dev main.py`
+4. Start FastAPI.
+   - For production mode: `fastapi run main.py`
+   - For dev mode. `fastapi dev main.py`
 
-## Instrucciones de instalación Docker
-1. Ejecutar: `docker compose up -d`
+## Docker Installation Instructions
+1. Execute: `docker compose up -d`
 
-## Instrucciones de uso:
-La aplicación expone el puero 8000
+## Usage instructions:
+You can access microservice at `localhost:8000` in your web browser
 
-Docoumentación del API disponible en `localhost:8000/docs`
+API docs: `localhost:8000/docs`
 

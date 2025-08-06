@@ -3,7 +3,6 @@ import os.path, os
 from fastapi import FastAPI, HTTPException, Response
 from fastapi.responses import FileResponse
 from pydantic import BaseModel
-from config import WKHTMLTOPDF_PATH
 from src.service import AppService
 
 
@@ -19,22 +18,21 @@ appService = AppService()
 
 #Elementos de FastAPi
 app = FastAPI(
-    title="Microservicio md a pdf",
-    summary= "Microservicio que recibe un texto en formato md y lo devuelve en un pdf",
-    # description="Esta API contiene las interfaces para las funcioanlidade de Checklist",
+    title="Microservice md a pdf",
+    summary= "Microservice that gets a text in markdown format and returns it in a pdf",
 )
 
-@app.get("/status", name="Status API", summary='Retorna ok si el API esta en funcionamiento')
+@app.get("/status", name="Status API", summary='Returns ok if app is ok')
 def read_root():
     return {
-        "status": "pk",
+        "status": "ok",
     }
 
 @app.post(
     path="/generate-pdf",
-    name="Checklist",
+    name="Pdf generator",
     response_class=FileResponse,
-    summary='Recibe un texto en formato md y lo guarda en un pdf'
+    summary='Receives a text in markdown format and generates a pdf file'
     )
 async def mdToPdf(request: PdfRequest):
 
@@ -44,7 +42,6 @@ async def mdToPdf(request: PdfRequest):
     #Verificamos que si exista el pdf
     if not os.path.exists(pathPdf):
         raise HTTPException(status_code=500, detail=f"Error generating PDF. ")
-
 
     # leemos el contenido del pdf
     with open(pathPdf, 'rb') as pdfFile:
@@ -56,5 +53,5 @@ async def mdToPdf(request: PdfRequest):
     return Response(
         content=pdf_content,
         media_type='application/pdf',
-        headers={"Content-Disposition": f"attachment; filename=Response-ia.pdf"}
+        headers={"Content-Disposition": "attachment; filename=md_in_pdf.pdf"}
     )
